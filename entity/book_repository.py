@@ -12,6 +12,13 @@ class BookRepository:
         print("Book: {0}".format(book))
         return json.dumps(book)
 
+    def find_books_by_author(self, author):
+        response = []
+        for idx, book in enumerate(self.books):
+            if book["Author"] == author:
+                response.append(book)
+        return response
+
     def remove_book(self, title):
         found = False
         for idx, book in enumerate(self.books):

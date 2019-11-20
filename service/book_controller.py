@@ -1,6 +1,7 @@
 import tornado.ioloop
 import tornado.web
 from entity.book_repository import BookRepository
+from service.book_handler import BookHandler
 
 book_repo = BookRepository()
 
@@ -12,7 +13,8 @@ class MainHandler(tornado.web.RequestHandler):
 
 def make_app():
     return tornado.web.Application([
-        (r"/v1", MainHandler)
+        (r"/v1", MainHandler),
+        (r"/v1/books", BookHandler, {'book_repository': book_repo})
     ])
 
 
